@@ -35,7 +35,10 @@ def reg_class(message):
                         return 0
             if message.text.split(' ')[1].lower() == 'маг': World.players[0] = Mag(World.players[0])
             elif message.text.split(' ')[1].lower() == 'герой': World.players[0] = Hero(World.players[0])
-            bot.send_message(message.chat.id, 'Ты успешно попал в мир ! друг мой')
+            markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+            item1 = types.KeyboardButton("/menu")
+            markup.add(item1)
+            bot.send_message(message.chat.id, 'Ты успешно попал в мир ! друг мой', replay_markup=markup)
         else:
             bot.send_message(message.chat.id, 'Такого класса не существует !')
 
@@ -44,6 +47,10 @@ def info(message):
     for i in World.players:
         if i.id == message.chat.id:
             bot.send_message(message.chat.id, f'Имя: {i.name}\nКласс: {i._class}\nЗдоровье: {i.helf}\nСила: {i.power}\nОружие: {i.weapon.name}\n {message.chat.id} ')
+
+@bot.message_handler(commands=['menu'])
+def menu(message):
+    
 
 @bot.message_handler(commands=['iii'])
 def test(message):

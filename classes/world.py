@@ -10,5 +10,7 @@ class World:
     
     @staticmethod
     def return_player(player_id):
-        for i in World.players: if i.id == player_id: return i
+        for i in World.players: 
+            if i.id == player_id: 
+                return i
     
